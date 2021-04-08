@@ -66,3 +66,30 @@
         ```sh
         $ mvn clean -Pnative-image package
         ```
+
+## How to Deploy
+
+1. Set up Local Knative
+
+    - [Install Istio without sidecar injection](https://knative.dev/docs/install/installing-istio/#installing-istio-without-sidecar-injection)
+    `istioctl install -f deployment/istio-knative/istio-minimal-operator.yaml`
+
+    - [Install the Serving component](https://knative.dev/docs/install/install-serving-with-yaml/#install-the-serving-component)
+      1. the required custom resources
+        ```bash
+        kubectl apply -f https://github.com/knative/serving/releases/download/v0.22.0/serving-crds.yaml
+        ```
+      2. the core components of Serving
+        ```bash
+        kubectl apply -f https://github.com/knative/serving/releases/download/v0.22.0/serving-core.yaml
+        ```
+
+    - [Install knative CLI](https://knative.dev/docs/client/install-kn/#install-kn-using-brew)
+        ```bash
+        brew tap knative/client
+        brew install kn
+        ```
+        Or
+        ```
+        brew install knative/client/kn
+        ```
